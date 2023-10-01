@@ -1,0 +1,637 @@
+LAB 1 EXPERIMENT NO.1
+OBJECTIVE: TO IMPLEMENT CONJUNCTION, DISJUNCTION AND
+NEGATION
+THEORY
+Logical operators like AND, OR, and NOT allow us to combine propositions in mathematical statements to determine their truth value. Propositions themselves are simple declarative sentences that can be either true or false. A truth table shows all the possible combinations of truth values for the propositions in a logical statement and the resulting truth value of the overall statement. Some of the Logical operators are:
+
+1.	CONJUNCTION
+Conjunction is used to combine two propositions where both must be true for the overall statement to be true. If we let p and q represent logical propositions, the conjunction is notated as p 𝖠 q. The conjunction will only be true if both p and q are individually true. If either p or q or both are false, then the whole conjunction p 𝖠 q will be false
+Truth Table:
+
+p	q	p^q
+T	T	T
+T	F	F
+F	T	F
+F	F	F
+
+
+2.	DISJUNCTION
+Disjunction combines two propositions where one or both can be true for the overall statement to be true. Using p and q again, the disjunction is notated as p ∨ q. This disjunction will be true as long as at least one of p or q is true. Even if one is false, if the other is true, the disjunction as a whole will still be true. The only way for p ∨ q to be false is if both p and q are false.
+
+Truth Table
+p	q	pvq
+T	T	T
+T	F	T
+F	T	T
+F	F	F
+ 
+3.	NEGATION
+Negation flips or inverts the truth value of a single proposition. If we have proposition p, the negation would be notated as ¬p. If p is true, then ¬p will be false. And if p is false, ¬p will be true. Negation simply reverses or negates the truth value of the original proposition.
+Truth Table
+
+p	¬p
+T	F
+F	T
+
+SOURCE CODE
+//program to implement conjunction, disjunction and negation #include<stdio.h>
+#include<stdbool.h>
+bool andOperator(bool propositionA, bool propositionB){ return propositionA && propositionB;
+}
+bool orOperator(bool propositionA, bool propositionB){ return propositionA || propositionB;
+}
+bool notOperator(bool proposition){ return !proposition;
+}
+void printTruthValue(bool proposition){ if(proposition == true)
+printf("T\t"); else
+printf("F\t");
+}
+int main(){ int i;
+bool conjunction, disjunction, notA, notB; bool p[4] = {true, true, false, false};
+bool q[4] = {true, false, true, false}; printf("\n\tp\tq\tp^q\tpvq\t~p\t~q\n");
+printf("	\n"); for(i=0; i<4; i++){
+printTruthValue(p[i]); printTruthValue(q[i]);
+conjunction = andOperator(p[i], q[i]); disjunction = orOperator(p[i], q[i]);
+ 
+notA = notOperator(p[i]); notB = notOperator(q[i]);
+
+printTruthValue(conjunction); printTruthValue(disjunction); printTruthValue(notA); printTruthValue(notB); printf("\n");
+}
+return 0;
+}
+
+OUTPUT
+This program implements basic boolean logic operations like AND, OR and NOT in C. It begins by defining functions for each operation - andOperator(), orOperator() and notOperator() - that take boolean inputs and return boolean outputs. To demonstrate these functions, it creates boolean arrays p and q representing propositions, and iterates through all combinations of true and false for these inputs. In the loop, it applies the AND, OR and NOT functions to p and q, storing the outputs. It then prints a table showing the original p and q values, along with the results of the boolean operations on those values. This outputs a truth table for all possible input combinations, allowing us to visualize how the AND, OR and NOT operations work on true and false propositions.
+
+CONCLUSION:
+Hence, the program to create and implement truth table of conjunction, disjunction and negation was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+
+
+
+EXPERIMENT NO.2
+OBJECTIVE: TO IMPLEMENT IMPLICATION AND BICONDITION
+THEORY
+
+1.	IMPLICATION (→)
+The implication operator, denoted by p → q, is considered true in all scenarios except when the antecedent p is true while the consequent q is false. It represents the logical idea of "if p, then q" - q can be false and the implication still holds as true, provided p is false. However, if p is true and q is false, then the implication relationship breaks and the statement evaluates to false.
+Truth Table
+p	q	p→ q
+T	T	T
+T	F	F
+F	T	T
+F	F	T
+
+2.	BICONDITION(↔)
+The biconditional operator, denoted by p ↔ q, is true only when p and q have the same truth value. That is, the biconditional is true if both p and q are true, or if both are false. This represents the "if and only if" relationship where p and q must logically be equivalent. If the truth values of p and q differ, such as p being true when q is false, then the biconditional statement will be evaluated as false. The biconditional can be thought of as an "if and only if" version of combining implication relationships in both directions between p and q.
+
+
+
+
+Truth Table
+p	q	p↔q
+T	T	T
+T	F	F
+F	T	F
+F	F	T
+SOURCE CODE
+//program to implement implication and bicondition
+#include <stdio.h> #include <stdbool.h>
+ 
+bool implication(bool p, bool q) { return !p || q;
+}
+
+bool biconditional(bool p, bool q) { return (!p || q) && (!q || p);
+}
+
+void printTruthValue(bool proposition) { if (proposition == true)
+printf("T\t"); else
+printf("F\t");
+}
+
+int main() { int i;
+bool implicationResult, biconditionalResult; bool p[4] = {true, true, false, false};
+bool q[4] = {true, false, true, false}; printf("\np\tq\tp→ q\tp↔ q\n");
+printf("	\n"); for (i = 0; i < 4; i++) {
+printTruthValue(p[i]); printTruthValue(q[i]);
+implicationResult = implication(p[i], q[i]); biconditionalResult = biconditional(p[i], q[i]); printTruthValue(biconditionalResult); printTruthValue(implicationResult); printf("\n");
+}
+return 0;
+}
+OUTPUT
+
+ 
+This program shows how implication and biconditional logical operators work in boolean logic. It first defines functions for implication (p -> q) and biconditional (p <-> q) that take two boolean inputs p and q and return a boolean result. The main function sets up boolean arrays p and q representing logical propositions, with all combinations of true and false values. It then loops through each combination, passing p and q into the implication and biconditional functions to get the boolean result. These results are printed out in a truth table format, with columns for p, q, p -> q and p <-> q.
+
+CONCLUSION:
+Hence, the program to create and implement the truth table of implication and bi-condition was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+
+
+EXPERIMENT NO.3
+OBJECTIVE: TO GENERATE THE TRUTH TABLE OF GIVEN PREPOSITIONS
+1.	((p→ q) ^ (q→ r)) → (p→ r)
+2. (p→ r) v (q→ r)
+
+THEORY
+A truth table methodically enumerates all possible combinations of truth values for the propositional variables in a logical expression. This allows us to determine the truth value of the overall compound statement. Logic provides a formal system to evaluate if reasoning is valid.
+The basic building blocks are propositions - simple true/false statements. Logical operators like AND, OR, NOT allow combining propositions into more complex expressions. Truth tables list all possible true/false combinations of the propositions to systematically determine if the overall compound statement is true or false. Together, logical operators and truth tables give us a precise, mathematical way to examine the soundness of logical arguments.
+
+SOURCE CODE
+//program demonstrate truth table of given preposition #include <stdio.h>
+#include <stdbool.h>
+void printTruthValue(bool proposition) { if (proposition == true)
+printf("T\t"); else
+printf("F\t");
+}
+
+int main() {
+
+bool p[8] = {true, true, true, true, false, false, false, false}; bool q[8] = {true, true, false, false, true, true, false, false}; bool r[8] = {true, false, true, false, true, false, true, false};
+bool implicationPQ, implicationQR, andOp, implicationPR, expression1, orOp; int i;
+printf("\np\tq\tr\tp→q\tq→r\t(p→q)^(q→r)\tp→r\t((p→q)^(q→r))→(p→r)\t(p→r)v(q→r)\n"); printf("	\n");
+ 
+
+for(i=0; i < 8; i++){
+
+printTruthValue(p[i]); printTruthValue(q[i]); printTruthValue(r[i]); implicationPQ = !p[i] || q[i]; implicationQR = !q[i] || r[i]; printTruthValue(implicationPQ); printTruthValue(implicationQR);
+andOp = implicationPQ && implicationQR; printTruthValue(andOp);
+implicationPR = !p[i] || r[i]; printTruthValue(implicationPR); expression1 = !andOp || implicationPR; printTruthValue(expression1);
+orOp = implicationPQ || implicationQR; printTruthValue(orOp);
+printf("\n");
+}
+return 0;
+}
+
+OUTPUT
+
+The program shows how more complex logical expressions can be built up from basic boolean operators like AND, OR and NOT. It defines arrays of truth values for propositions p, q and r. It then loops through all combinations of true and false for these propositions. Inside the loop, it uses NOT and OR to calculate the implications p->q, q->r and p->r based on the current p, q and r values. It saves these implication results. Then it performs AND on the implication p->q and q-
+>r. It also performs OR on p->q and q->r. Finally, it evaluates the expression "(p->q AND q->r) implies p->r" by checking if the AND result is false or p->r is true. The truth table prints out all
+ 
+these intermediate results, allowing us to verify how complex logical expressions evaluate for all possible input values.
+
+CONCLUSION:
+Hence, the program to create and implement the truth table of ((p→ q)^(q→ r))→ (p→ r) and (p→ r)v(q→ r) was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+
+EXPERIMENT NO.4
+OBJECTIVE: TO CHECK THE GIVEN PROPOSITION IS TAUTOLOGY, CONTRADICTION AND CONTINGENCY
+
+THEORY
+1.	Tautology
+A logical expression that is always true, regardless of the truth values of its constituent propositions. The truth table will have TRUE in the output column for all possible input combinations.
+2.	Contradiction
+A logical expression that is always false, for any assignment of truth values to its propositions. The truth table output column will be FALSE for all rows.
+3.	Contingency
+A logical expression whose truth depends on the specific truth values of the propositions within it. The truth table will have both TRUE and FALSE values in the output column, corresponding to different inputs.
+
+SOURCE CODE
+//program to check the given proposition is tautology, contradiction and contingency #include <stdio.h>
+#include<stdbool.h> void display(bool q) {
+if (q == true) printf(" T\t");
+else
+printf(" F\t");
+}
+
+bool isTautology(bool expr[]){ for(int i=0; i<8; i++){ if(!expr[i])
+return false;
+}
+return true;
+}
+
+// Checks if expression is contradiction bool isContradiction(bool expr[]){ for(int i=0; i<8; i++){
+if(expr[i]) return false;
+ 
+}
+return true;
+}
+
+// Checks if expression is contingency bool isContingency(bool expr[]){
+int trueCount = 0, falseCount = 0; for(int i=0; i<8; i++){
+if(expr[i]) trueCount++; else
+falseCount++;
+}
+
+return (trueCount != 0 && falseCount != 0);
+}
+bool exp1 [] ; bool exp3 [] ; int main() {
+bool p[] = { true, true, true, true, false, false, false, false }; bool q[] = { true, true, false, false, true, true, false, false }; bool r[] = { true, false, true, false, true, false, true, false }; bool x;
+int i;
+printf("\np\t q\t r\t p→ q\t q→ r\t (p→ q)^(q→ r)\t p→ r\t ((p→ q)^(q→ r))→ (p→ r)\t(p→ r)v(q→ r)\n");
+printf(" 	
+ 		\n"); for (i = 0; i < 8; i++) {
+display(p[i]);
+display(q[i]);
+display(r[i]); display((!p[i] || q[i])); printf("\t"); display((!q[i] || r[i]));
+printf("\t\t");
+display((!p[i] || q[i]) && (!q[i] || r[i])); printf("\t\t\t");
+display(!p[i] || r[i]); printf("\t\t\t");
+x = (!p[i] || q[i] && (!q[i] || r[i])); printf("\t\t");
+display(!x || (!p[i] || r[i]));
+exp1[i] =( !x || (!p[i] || r[i]));
+ 
+printf("\t\t\t\t\t");
+display((!p[i] || r[i]) || (!q[i] || r[i]));
+exp3[i] = ((!p[i] || r[i]) || (!q[i] || r[i])); printf("\n");
+}
+if (isTautology(exp1))
+{
+printf("Tautology : ((p->q)^(q->r)->(p->r))\n");
+}
+if (isContingency(exp3))
+{
+printf("Contingency : (p->r) v (q->r) ");
+}
+return 0;
+}
+
+OUTPUT
+The program evaluates two logical expressions (p->q) ^ (q->r) -> (p->r) and (p->r) v (q->r) for all combinations of p, q and r being true or false. It stores the results of evaluating these expressions in arrays. It then checks if the first expression is a tautology (always true) by seeing if any result is false. It also checks if the second expression is a contingency (sometimes true, sometimes false) by counting the number of true and false results. If the first expression is a tautology, it prints that out. If the second is a contingency, it prints that out.
+
+CONCLUSION:
+Hence, the program to check tautology ,contradiction or contingency of ((p→ q)^(q→ r))→ (p→ r) and (p→ r)v(q→ r) was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+LAB 2 EXPERIMENT NO.1
+OBJECTIVE: TO IMPLEMENT EUCLIDEAN ALGORITHM
+THEORY
+The Euclidean algorithm provides a simple and elegant method for finding the greatest common divisor (GCD) of two integers. It is based on the theoretical fact that the GCD of two numbers does not change if the smaller number is subtracted from the larger one. The algorithm exploits this idea by successively dividing the larger number by the smaller to get a remainder.
+If the remainder is 0, then the divisor is the GCD. If not, the algorithm repeats using the divisor and remainder. This continues until the remainder is 0, at which point the last non-zero remainder is the GCD. The theory behind the algorithm relies on identifying common divisors between two integers. By repeatedly dividing out any common factors, the algorithm eventually reduces the problem down to finding the GCD of smaller and smaller pairs of numbers, until the largest common factor is found.
+SOURCE CODE
+//program to demonstrate Euclidian algorithm #include <stdio.h>
+int gcd(int a, int b) { if (b == 0) {
+return a;
+}
+return gcd(b, a % b);
+}
+int main() {
+int num1, num2;
+printf("Enter two numbers: "); scanf("%d %d", &num1, &num2); int result = gcd(num1, num2);
+printf("GCD of %d and %d is %d", num1, num2, result); return 0;
+}
+
+OUTPUT
+ 
+
+This program finds the greatest common divisor (GCD) of two input numbers using recursion. It prompts the user to input two numbers and stores them in num1 and num2. It then calls a recursive gcd function, passing num1 and num2 as arguments. In gcd, if b is 0, a is returned as that's the GCD. Otherwise, gcd calls itself recursively, passing b and the remainder of a%b as arguments. This replaces a and b with smaller values each call, until b becomes 0. At that point, each recursive call unwinds, returning the GCD up the stack. This recursive approach recursively reduces the inputs until the base case is reached, allowing GCD to be computed elegantly in a simple recursive manner. The final GCD result is printed out.
+
+CONCLUSION:
+Hence, the program to implement Euclidean algorithm was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+
+EXPERIMENT NO.2
+OBJECTIVE: TO IMPLEMENT EXTENDED EUCLIDEAN ALGORITHM
+THEORY
+The Extended Euclidean Algorithm builds upon the original algorithm for finding the Greatest Common Divisor (GCD) by also determining the coefficients x and y that satisfy the equation ax + by = gcd(a,b).
+It works by maintaining two extra variables x and y that are updated in each step of the recursive GCD calculation using the relationships: x1 = y0 - ⌊b/a⌋*x0 and y1 = x0, where x1, y1 are the new coefficients, b/a is the quotient, and x0, y0 are the previous coefficients. As the algorithm recursively reduces the remainder through division, x and y are carefully updated. When the remainder reaches 0, the final x and y satisfy the equation for the computed GCD. The theory behind this algorithm relies on augmenting the original Euclidean GCD computation with coefficient tracking. By reducing the remainder in a recursive manner while simultaneously updating x and y based on the division
+SOURCE CODE
+//program to demonstrate extended Euclidean algorithm #include <stdio.h>
+void extendedEuclid(int a, int b)
+{
+int originalA = a; int originalB = b;
+
+int x = 0;
+int previousX = 1; int y = 1;
+int previousY = 0;
+int quotient, remainder; while(b != 0) {
+quotient = a / b; remainder = a % b; int tempX = x;
+x = previousX - quotient * x; previousX = tempX;
+int tempY = y;
+y = previousY - quotient * y; previousY = tempY;
+a = b;
+ 
+b = remainder;
+}
+
+printf("gcd(%d,%d) = %d\n", originalA, originalB, a); printf("x = %d, y = %d", previousX, previousY);
+}
+
+int main() { int a, b;
+printf("\nEnter the numbers: "); scanf("%d%d", &a, &b); extendedEuclid(a, b);
+return 0;
+}
+
+OUTPUT
+This program implements the extended Euclidean algorithm to find the GCD of two numbers as well as the coefficient values x and y that satisfy the equation ax + by = gcd(a,b). It takes as input two integers entered by the user. It then calls the extendedEuclid function, passing the input numbers as a and b. This function iteratively computes the GCD using the standard Euclidean algorithm, but also keeps track of x and y values that represent the coefficient transformations at each step.
+
+CONCLUSION:
+Hence, the program to implement Extended Euclidean algorithm was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+
+EXPERIMENT NO.3
+OBJECTIVE: TO IMPLEMENT ADDITION AND MULTIPLICATION ALGORITHM FOR BINARY NUMBERS
+THEORY
+Binary addition and multiplication work on the same essential principles as decimal number arithmetic, but operate on the base-2 binary number system where each digit is either 0 or 1. For binary addition, two binary numbers are added digit-by-digit from right to left, and any time the sum of two digits is 2 (represented as 10 in binary), we write a 0 in that digit and carry a 1 over to the next column. This carry over process is repeated for each digit pair, resulting in the final binary sum.
+Binary multiplication works by taking each digit of one number and multiplying it by each digit of the other number, creating partial products. These partial products are shifted left by a number of digits equal to the multiplier's digit position, and then all the partial products are summed together to get the final product. The key theoretical foundation is that by performing digit-wise shift and add operations, the fundamental arithmetic algorithms readily extend from base-10 decimal to base-2 binary. This manipulation of individual binary digits enabled the creation of digital logic gates and arithmetic logic units that could efficiently perform calculations in binary inside computers.
+
+
+SOURCE CODE
+//program to demonstrate sum and multiply of binary #include <stdio.h>
+int conveterBD(int n) {
+int decimal = 0; int base = 1; while (n > 0) {
+int lastDigit = n % 10; n = n / 10;
+decimal += lastDigit * base; base = base * 2;
+}
+return decimal;
+}
+
+// Function to add two binary numbers int addBinary(int a, int b){
+int sum = conveterBD(a) + conveterBD(b);
+ 
+return sum;
+}
+
+// Function for binary multiplication int multiplyBinary(int a, int b){
+int product = conveterBD(a) * conveterBD(b); return product;
+}
+int main() { int a,b;
+printf("Enter two number in binary\n");
+scanf("%d %d",&a,&b);
+
+printf("Addition: %d \n", addBinary(a, b)); printf("Multiplication: %d", multiplyBinary(a, b));
+
+return 0;
+}
+
+OUTPUT
+This program allows adding and multiplying two binary numbers entered by the user. It first defines a converterBD function that converts a binary number to decimal by iterating through each digit, multiplying by the appropriate power of 2, and summing. This decimal conversion is used by the addBinary and multiplyBinary functions. addBinary calls converterBD to get the decimal values of the inputs, adds them, and returns the sum. multiplyBinary similarly converts to decimal, multiplies, and returns the product. In main, the user enters two binary numbers which are passed to these functions , then operation is computed.
+
+CONCLUSION:
+Hence, the program to implement addition and multiplication algorithm for binary numbers was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+EXPERIMENT NO.4
+OBJECTIVE: TO FIND BOOLEAN JOIN AND MULTIPLICATION OF BOOLEAN MATRICES
+THEORY
+Boolean matrices are matrices with elements of either 0 or 1, and Boolean operations like join and multiplication have specific rules for manipulation of these binary values. The Boolean join of two matrices A and B is computed by taking the element-wise OR operation between their corresponding elements. This OR operation on binary values outputs a 1 if either input value is 1.
+For Boolean matrix multiplication, the row elements of A are AND with the column elements of B, and the outputs are OR together. The AND operation between two binaries outputs 1 only if both values are 1. By leveraging these fundamental Boolean operations of OR and AND on the 0/1 matrix elements, we can find the join and product of two Boolean matrices. The theory focuses on defining binary Boolean operations on matrices that maintain the algebraic properties of standard matrix operations
+SOURCE CODE
+//program to demonstrate join and multiply of Boolean matrixes #include <stdio.h>
+#include <stdbool.h>
+#define RC 3
+// Function for Boolean join of two matrices bool join[RC][RC];
+void boolJoin(bool A[RC][RC], bool B[RC][RC]) { for(int i=0; i<RC; i++) {
+for(int j=0; j<RC; j++) {
+
+join[i][j] = A[i][j] || B[i][j];
+printf("%d",join[i][j]);
+}
+printf("\n");
+}
+}
+displayMatrix(bool a[RC][RC])
+{
+for(int i=0; i<RC; i++) { for(int j=0; j<RC; j++) {
+
+
+printf("%d",a[i][j]);
+}
+ 
+printf("\n");
+}
+}
+// Function for Boolean multiplication of two matrices bool prod[RC][RC];
+void boolMultiply(bool A[RC][RC], bool B[RC][RC]) { for(int i=0; i<RC; i++) {
+for(int j=0; j<RC; j++) { prod[i][j] = false;
+for(int k=0; k<RC; k++) {
+prod[i][j] = (prod[i][j] || (A[i][k] && B[k][j]));
+
+}
+printf("%d",prod[i][j]);
+}
+printf("\n");
+}
+}
+
+int main() {
+// Initialize sample 3x3 Boolean matrices
+bool A[RC][RC] = {{1, 1, 0}, {1, 1, 1}, {0, 0, 1}};
+bool B[RC][RC] = {{1, 1, 0}, {0, 1, 1}, {0, 0, 1}};
+
+printf("Matrix A :\n"); displayMatrix(A); printf("Matrix B :\n"); displayMatrix(B); printf("Bool Join:\n"); boolJoin(A, B); printf("Bool Product:\n"); boolMultiply(A, B);
+
+return 0;
+}
+ 
+OUTPUT
+This C program performs Boolean operations on 3x3 matrices. It includes headers for input/output and boolean data types and defines a constant RC for matrix size. The program uses global boolean arrays join and prod to store results. It has three functions: boolJoin computes the logical OR between corresponding elements of two input matrices and prints the result. displayMatrix displays a 3x3 matrix. boolMultiply calculates Boolean matrix multiplication and displays the result. In the main function, two sample 3x3 matrices are initialized, displayed, and their join and multiplication results are shown on the console. This program demonstrates basic Boolean matrix operations.
+
+CONCLUSION:
+Hence, the program to find boolean join and multiplication of boolean matrices was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+
+ 
+
+
+
+OBJECTIVE
+ 
+LAB 3 EXPERIMENT NO.1
+ 
+•	TO FIND THE SUM OF FIRST N NATURAL NUMBERS
+•	TO FIND VALUE OF N!
+•	TO FIND Nth VALUE OF FIBONACCI NUMBER
+•	TO FIND THE VALUE OF 1^2+2^2+3^2+ +n^2
+•	TO FIND THE POWER(a,b)
+THEORY
+
+Recursion is a powerful programming technique in which a function calls itself directly or indirectly to solve a problem. This creates an iterative, repetitive approach well-suited for problems that can be broken down into smaller sub-problems. A recursive function has two key components - the base case, which is the simplest input with a direct result, and the recursive case, which involves calling the function again on a smaller input. Recursion uses a stack to store information between calls. Each function call adds a stack frame until the base case is reached, then the calls return their results back up the stack. While recursion provides elegant solutions, excessive function calls can be inefficient compared to iteration for large inputs.
+
+Recursion is commonly applied to classic algorithms like factorial computation, Fibonacci sequence generation, binary searching of sorted arrays, sorting via merge sort, and tree traversal. Factorial calculates n! by recursively calling fact(n-1) with base case fact(1)=1. Fibonacci generates each term by adding prior two terms, with base cases f(0) and f(1) predefined.
+
+PROGRAM 1 SOURCE CODE
+//program to find the sum of first n natural numbers #include <stdio.h>
+int sum(int n) { if(n <= 1) return n;
+return n + sum(n-1);
+ 
+}
+
+
+int main() { int n, result;
+printf("Enter a positive integer: "); scanf("%d", &n);
+result = sum(n); printf("Sum = %d", result); return 0;
+}
+
+
+OUTPUT
+The sum() function calls itself recursively, reducing n by 1 in each call. The base case is reached when n becomes 1, and then the function returns 1. As the stack unwinds, the returned values are added, giving the final sum.So this recursively calculates the sum without using a loop.
+
+
+
+PROGRAM 2 SOURCE CODE
+//program to demonstrate factorial using recursion #include <stdio.h>
+int factorial(int n) { if (n == 0)
+return 1;
+else
+ 
+return n * factorial(n-1);
+}
+
+
+int main() {
+int num, result;
+printf("Enter a positive integer: "); scanf("%d", &num);
+result = factorial(num);
+printf("Factorial of %d is %d", num, result); return 0;
+}
+
+OUTPUT
+The factorial () function calls itself recursively, reducing n in each call until n becomes 0. As the stack unwinds, the returned values are multiplied to calculate the final factorial value. The base case is factorial (0) which returns 1. This is multiplied up to n to calculate n!
+
+
+
+
+PROGRAM 3 SOURCE CODE
+//program to demonstrate Fibonacci sum recursion #include<stdio.h>
+int fibo(int n){ if(n==0)
+ 
+return 0; else if(n==1) return 1; else
+return fibo(n-1)+fibo(n-2);
+}
+int main(){ int n;
+printf("enter the number\n"); scanf("%d",&n);
+printf("The Fibonacci Sum of %d number is %d",n,fibo(n));
+}
+
+OUTPUT
+In the main function, the program prompts the user to enter a number n and reads the input using scanf. Then, it calls the fibo function with the input n and displays the result as "The Fibonacci Sum of n number is result" using printf. The function recursively calls itself with n-1 and n-2 and returns the sum of the two recursive calls.
+
+
+PROGRAM 4 SOURCE CODE
+//program to demonstrate square of first natural num #include <stdio.h>
+int sqr(int n) { if(n == 0)
+return 0; else
+return n*n + sqr(n-1);
+}
+ 
+int main() { int n, result;
+printf("Enter a positive integer: "); scanf("%d", &n);
+result = sqr(n);
+printf("Sum of squares of first %d natural numbers is
+%d", n, result); return 0;
+}
+OUTPUT
+The sqr() function calls itself recursively, reducing n in each call. In each call, it calculates the square of current n and adds it to the sum returned by recursive call with n-1.The base case is when n becomes 0, it returns 0. As the recursion unwinds, the squares are added to calculate the final sum.
+
+PROGRAM 5 SOURCE CODE
+//program to demonstrate pow(a,b) using recursion #include <stdio.h>
+int power(int a, int b) { if(b == 0)
+return 1; else
+return a * power(a, b-1);
+}
+int main() {
+int a, b, result;
+printf("Enter the base number: "); scanf("%d", &a);
+printf("Enter the exponent: ");
+ 
+scanf("%d", &b); result = power(a, b);
+printf("%d^%d is %d", a, b, result); return 0;
+}
+OUTPUT
+The power() function calls itself recursively, reducing the exponent b by 1 in each call. The base case is when b becomes 0, it returns 1. This is multiplied upto the original b to get the final result.
+
+CONCLUSION:
+Hence, the program find factorial of n , pow(a,b), sum of natural number ,sum of square of natural number , sum of Fibonacci series recursively was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+
+
+EXPERIMENT NO.2
+OBJECTIVE: TO IMPLEMENT TOWER OF HANOI ALGORITHM
+THEORY
+The Tower of Hanoi is a mathematical puzzle involving three rods and a stack of disks of decreasing size which must be transferred from one rod to another. The algorithm provides a recursive solution where the stack of disks is conceptually broken down into two parts - the largest bottom disk, and the smaller disks above it.
+The theory relies on the idea that in order to move a stack of n disks, first the smaller n-1 disks must be temporarily moved out of the way to another rod, using it as spare space. This exposes the largest nth disk at the bottom which can then be moved to the destination rod.
+Finally, the n-1 disks from the spare rod can be moved on top of the largest disk at the destination, thus transferring the entire stack. This breakdown enables solving the problem through repetitive moving of sub stacks - recursively transferring n-1 disks, moving 1 disk, and transferring the n-1 disks back. By reducing the puzzle into simpler sub problems, the Tower of Hanoi algorithm elegantly models a complex task as a set of repetitive steps, showing the power of recursion to tackle problems of any size.
+
+SOURCE CODE
+//program to demonstrate tower of hanoi #include<stdio.h>
+void TOH(int n, char A, char B, char C){ if(n>0)
+{
+TOH(n-1,A,C,B);
+printf("\nmove %d from %c to %c\n",n,A,C); TOH(n-2,B,A,C);
+}
+}
+int main(){ int n;
+char A='A' ,B='B',C='C';
+printf("\n Enter the no of disks\n"); scanf( "%d" , &n);
+TOH(n,A,B,C);
+}
+ 
+
+OUTPUT
+It defines a function TOH that recursively moves disks from one rod to another, printing each move. In the main function, the user inputs the number of disks, and the program initiates the Tower of Hanoi solution with three rods, A, B, and C. The program then displays the sequence of moves required to transfer all the disks from rod A to rod C, adhering to the Tower of Hanoi rules.
+
+CONCLUSION:
+Hence, the program implement tower of Hanoi algorithm was written, compiled and run in C using the VS code with MS C++ compiler in the lab.
+ 
+EXPERIMENT NO.3
+OBJECTIVE: TO IMPLEMENT MERGE SORT ALGORITHM
+THEORY
+Merge sort is an efficient, stable sorting algorithm that works by recursively breaking down a list into smaller sublists until each sublist consists of only one element. It then merges the sublists back together in a sorted order. The sublists are merged by comparing the first elements, appending the lesser to a new list, and repeating until sorted. Merge sort has O(n log n) time complexity due to the log n splits and O(n) merge cost. It is stable, efficient for large lists, but requires O(n) extra space for merging.
+
+
+SOURCE CODE
+//program to implement merge sort #include <stdio.h>
+#include <stdlib.h>
+void merge(int arr[], int l, int m, int r)
+{
+int i, j, k;
+int n1 = m - l + 1; int n2 = r - m;
+int L[n1], R[n2];
+for (i = 0; i < n1; i++)
+L[i] = arr[l + i]; for (j = 0; j < n2; j++)
+R[j] = arr[m + 1 + j];
+i = 0;
+j = 0;
+k = l;
+while (i < n1 && j < n2) { if (L[i] <= R[j]) {
+arr[k] = L[i]; i++;
+ 
+}
+else {
+
+
+} k++;
+}
+ 
+
+
+arr[k] = R[j]; j++;
+ 
+while (i < n1) { arr[k] = L[i]; i++;
+k++;
+ 
+}
+while (j < n2) { arr[k] = R[j]; j++;
+k++;
+}
+}
+void mergeSort(int arr[], int l, int r)
+{
+if (l < r) {
+int m = l + (r - l) / 2; mergeSort(arr, l, m); mergeSort(arr, m + 1, r);
+
+merge(arr, l, m, r);
+}
+}
+void printArray(int A[], int size)
+{
+int i;
+for (i = 0; i < size; i++)
+printf("%d ", A[i]); printf("\n");
+}
+int main()
+{
+int arr[] = { 12, 11, 13, 5, 6, 7 };
+int arr_size = sizeof(arr) / sizeof(arr[0]);
+
+printf("Given array is \n"); printArray(arr, arr_size);
+
+mergeSort(arr, 0, arr_size - 1);
+
+printf("\nSorted array is \n"); printArray(arr, arr_size); return 0;
+}
+ 
+
+OUTPUT
+It divides the array recursively into halves, sorts each half, and then merges the sorted halves back together. The merge() function merges two sorted subarrays into a single sorted subarray. mergeSort() makes the recursive calls to divide the array and sort the halves. printArray() prints the array. Main() provides the test array, calls mergeSort() on it, and prints the sorted array.
+
+CONCLUSION:
+Hence, the program implement merge sort was written, compiled, and run in Cusing the VS code with MS C++ compiler in the lab.
